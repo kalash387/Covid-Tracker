@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>COVID-19 Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+  </head>
+  
+  
+
+  <body>
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+  <a class="navbar-brand" href="/">COVID-19 Updates</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="Cases">Cases<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="Recovered">Recovered</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Deaths">Deaths</a>
+      </li>
+      
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="Search" method="POST">
+      <input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  
+  
+  
+  
+  
+  <div class="jumbotron">
+  <h1 class="display-4">Total recovered today:</h1>
+  <h1 class="display-4" th:text = "${totalRecovered}"></h1>
+  <hr class="my-4">
+<!--   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+<!--   <p class="lead"> -->
+<!--     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+<!--   </p> -->
+</div>
+
+<!-- <p th:text="${totalRecovered}"></p> -->
+
+
+  
+<!--     <p th:text="${listOfData}"></p> -->
+  <div>  
+     <table class = "table table-light" >
+      <tr>
+        <th>State</th>
+        <th>Country</th>
+<!--         <th>Total Cases</th> -->
+         <th>Total Recovered</th>
+      </tr>
+      <tr th:each="data : ${listOfRecoveredData}">
+        <td th:text="${data.state}? ${data.state} : 'Not available'"></td>
+        <td th:text="${data.country}"></td>
+<!--         <td th:text="${data.totalCases}"></td> -->
+         <td th:text="${data.totalRecovered}"></td>
+      </tr>
+    </table>
+</div>  
+  </body>
+
+</html>
